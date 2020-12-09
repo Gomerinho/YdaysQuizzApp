@@ -4,6 +4,7 @@ require_once('./functions/db.php');
 require_once('./functions/quizz.php');
 $main_datas = get_quizz_list($pdo, 6);
 $banner = $main_datas[array_rand($main_datas)];
+
 ?>
 
 <!DOCTYPE html>
