@@ -1,0 +1,126 @@
+.quizz-title {
+    height: 55px;
+    background-color: $blanc;
+
+    &:after {
+        content: '';
+        width: 100%;
+        height: 6px;
+        position: absolute;
+        left: 0;
+        background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
+        background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1a000000', endColorstr='#00000000', GradientType=0);
+    }
+
+    &>div {
+        display: table;
+        height: 100%;
+
+        .category {
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: 600;
+            display: table-cell;
+            vertical-align: middle;
+            height: 100%;
+
+            i,
+            svg {
+                color: $orange;
+            }
+
+            span {
+                padding-left: 15px;
+            }
+        }
+    }
+}
+
+.quizz-container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 55px 40px;
+    -webkit-box-shadow: 0px 7px 17px 0px rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: 0px 7px 17px 0px rgba(0, 0, 0, 0.06);
+    box-shadow: 0px 7px 17px 0px rgba(0, 0, 0, 0.06);
+    background-color: $blanc;
+    color: $dark-gray;
+
+    h2 {
+        font-size: 26px;
+    }
+
+    img {
+        height: auto;
+        width: 100%;
+    }
+
+    p {
+        color: inherit;
+        font-size: 18px;
+
+        &.author {
+            font-size: 16px;
+
+            span {
+                font-weight: 600;
+                font-style: italic;
+            }
+        }
+    }
+
+    .btn {
+        color: $noir;
+        padding: 10px 40px;
+
+        &:focus {
+            border-color: none;
+            color: $noir;
+        }
+
+        &:before {
+            background-color: $orange;
+        }
+
+        &:before,
+        &:focus:before {
+            border: 2px solid $orange;
+        }
+    }
+
+
+
+    .reponses {
+        margin-top: 40px;
+        padding: 0;
+        list-style-position: inside;
+
+        .reponse {
+            background: $gray;
+            padding: 10px;
+            transition: .3s all;
+            font-weight: 300;
+            font-size: 20px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $orange;
+                font-weight: 600;
+            }
+
+            +.reponse {
+                margin-top: 5px;
+            }
+
+            p {
+                margin: 0;
+                padding: 0;
+                font-size: inherit;
+                display: inline;
+                padding-left: 10px;
+            }
+        }
+    }
+}

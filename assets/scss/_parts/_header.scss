@@ -1,0 +1,85 @@
+header {
+    z-index: 2;
+    position: relative;
+}
+
+nav {
+    background-color: #F5B041;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+
+    &.navbar {
+        transition: .3s all;
+        width: 100%;
+        height: 84px;
+        // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        padding-top: 0;
+        padding-bottom: 0;
+
+        &.fixed-top {
+            height: 60px;
+
+            .navbar-brand {
+                .logo {
+                    height: 40px;
+                    width: 40px;
+                }
+            }
+        }
+
+        .navbar-brand {
+            .logo {
+                height: 65px;
+                width: 65px;
+                transition: .3s all;
+            }
+        }
+
+        .navbar-nav {
+            margin: 0 auto;
+
+            .nav-item {
+                letter-spacing: 2px;
+
+                +.nav-item {
+                    margin-left: 50px;
+                }
+            }
+
+        }
+
+        .dropdown-menu {
+            background-color: #F2D6AE;
+
+            .dropdown-item {
+                font-size: 12px;
+                color: black;
+
+                &:hover {
+                    color: white;
+                    background-color: #F2D6AE;
+                }
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: $noir;
+            font-weight: 600;
+            transition: .3s all;
+
+            &:hover {
+                color: #424242;
+            }
+        }
+
+        form {
+            input {
+                border-radius: 0;
+                padding: 5px 10px;
+                height: 45px;
+            }
+        }
+    }
+}
