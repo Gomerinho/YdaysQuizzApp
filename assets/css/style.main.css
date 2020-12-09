@@ -70,6 +70,12 @@ nav.navbar a {
 nav.navbar a:hover {
   color: #424242;
 }
+nav.navbar a.connexion {
+  text-transform: initial;
+}
+nav.navbar a.connexion span {
+  padding-left: 10px;
+}
 nav.navbar form input {
   border-radius: 0;
   padding: 5px 10px;
@@ -408,6 +414,7 @@ footer {
 .social {
   text-align: center;
   margin: 10px;
+  margin-bottom: 0;
 }
 
 .center {

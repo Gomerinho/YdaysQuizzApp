@@ -72,6 +72,14 @@ nav {
             &:hover {
                 color: #424242;
             }
+
+            &.connexion {
+                text-transform: initial;
+
+                span {
+                    padding-left: 10px;
+                }
+            }
         }
 
         form {

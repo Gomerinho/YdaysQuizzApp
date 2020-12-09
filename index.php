@@ -1,5 +1,13 @@
+<?php
+
+require_once('./functions/db.php');
+require_once('./functions/quizz.php');
+$main_datas = get_quizz_list($pdo, 6);
+$banner = $main_datas[array_rand($main_datas)];
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -18,258 +26,52 @@
     <?php include('./includes/header.php') ?>
 
     <main>
-        <section id="home" class="main-slider p-0">
-            <div class="container-fluid">
-                <div class="slides__list">
-                    <div class="slide-item">
-                        <div class="image" data-speed="0.4">
-                            <img src="https://i2.wp.com/www.hisour.com/wp-content/uploads/2018/05/Architecture-of-Seattle.jpg?fit=960%2C640&ssl=1" alt="">
-                        </div>
-                        <div class="info" style="opacity: 1; transform: translate3d(0px, 0px, 0px);">
-                            <div>
-                                <div class="container">
-                                    <h2>Geographie:
-                                        <br>Les grandes métropoles
-                                    </h2>
-                                    <p>
-                                        Proposé par&nbsp;:&nbsp;
-                                        <strong>Utilisateur</strong>
-                                    </p>
-                                    <p>&nbsp;</p>
-                                    <a class="btn btn-lg " href="/quizz.php" target="_self">Lancer le Quizz</a>
+
+        <?php if (sizeof($banner) > 0) : ?>
+            <section id="home" class="main-slider p-0">
+                <div class="container-fluid">
+                    <div class="slides__list">
+                        <div class="slide-item">
+                            <div class="image" data-speed="0.4">
+                                <img src="<?= $banner['img_link'] ?>" alt="">
+                            </div>
+                            <div class="info" style="opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                                <div>
+                                    <div class="container">
+                                        <h2><?= $banner['quizz_name'] ?></h2>
+                                        <p>
+                                            Proposé par&nbsp;:&nbsp;
+                                            <strong><?= $banner['username'] ?></strong>
+                                        </p>
+                                        <p>&nbsp;</p>
+                                        <a class="btn btn-lg " href="<?= get_url() ?>/quizz.php?id=<?= $banner['id_quizz'] ?>" target="_self">Lancer le Quizz</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        <?php endif; ?>
+
         <section class="main-categories">
             <div class="container-fluid">
                 <div class="categories__list">
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Barbara_McClintock_%281902-1992%29_shown_in_her_laboratory_in_1947.jpg/512px-Barbara_McClintock_%281902-1992%29_shown_in_her_laboratory_in_1947.jpg"></div>
-                            <div class="over-info">
-                                <div>
+                    <?php foreach ($main_datas as $data) : ?>
+                        <div>
+                            <a class="angled-img" href="<?= get_url() ?>/quizz.php?id=<?= $data['id_quizz'] ?>">
+                                <div class="img">
+                                    <img width="500" height="375" src="<?= $data['img_link'] ?>"></div>
+                                <div class="over-info">
                                     <div>
-                                        <h4>Science</h4>
+                                        <div>
+                                            <h4><?= $data['quizz_name'] ?></h4>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://dsbihome.files.wordpress.com/2019/03/n-video-games-628x314.jpg"></div>
-                            <div class="over-info">
-                                <div>
-                                    <div>
-                                        <h4>Jeux vidéos</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://www.ot-saumur.fr/photo/gal/pic/gal-10720280.jpg?v=1554899595"></div>
-                            <div class="over-info">
-                                <div>
-                                    <div>
-                                        <h4>Histoire</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2019-09/075_ciancaglini-formulao190906_nptom.jpg?itok=awWWaF7e"></div>
-                            <div class="over-info">
-                                <div>
-                                    <div>
-                                        <h4>Formule 1</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://www.corsenetinfos.corsica/photo/art/grande/30061714-28843993.jpg?v=1548340088"></div>
-                            <div class="over-info">
-                                <div>
-                                    <div>
-                                        <h4>Musique</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="categories__static">
-                    <div class="category__static">
-                        <div class="categories__title--manu">
-                            <div>
-                                <h2>Nouveaux quizz</h2>
-                            </div>
-                            <div>
-                                <a href="#" class="btn">Tout voir</a>
-                            </div>
+                            </a>
                         </div>
-                        <div class="categories__list--manu">
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Barbara_McClintock_%281902-1992%29_shown_in_her_laboratory_in_1947.jpg/512px-Barbara_McClintock_%281902-1992%29_shown_in_her_laboratory_in_1947.jpg"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Science</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://dsbihome.files.wordpress.com/2019/03/n-video-games-628x314.jpg"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Jeux vidéos</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://www.ot-saumur.fr/photo/gal/pic/gal-10720280.jpg?v=1554899595"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Histoire</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2019-09/075_ciancaglini-formulao190906_nptom.jpg?itok=awWWaF7e"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Formule 1</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://www.corsenetinfos.corsica/photo/art/grande/30061714-28843993.jpg?v=1548340088"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Musique</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="category__static">
-                        <div class="categories__title--manu">
-                            <div>
-                                <h2>Sport</h2>
-                            </div>
-                            <div>
-                                <a href="#" class="btn">Tout voir</a>
-                            </div>
-                        </div>
-                        <div class="categories__list--manu">
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Barbara_McClintock_%281902-1992%29_shown_in_her_laboratory_in_1947.jpg/512px-Barbara_McClintock_%281902-1992%29_shown_in_her_laboratory_in_1947.jpg"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Science</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://dsbihome.files.wordpress.com/2019/03/n-video-games-628x314.jpg"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Jeux vidéos</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://www.ot-saumur.fr/photo/gal/pic/gal-10720280.jpg?v=1554899595"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Histoire</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2019-09/075_ciancaglini-formulao190906_nptom.jpg?itok=awWWaF7e"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Formule 1</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="angled-img" href="#">
-                                    <div class="img">
-                                        <img width="500" height="375" src="https://www.corsenetinfos.corsica/photo/art/grande/30061714-28843993.jpg?v=1548340088"></div>
-                                    <div class="over-info">
-                                        <div>
-                                            <div>
-                                                <h4>Musique</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
