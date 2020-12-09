@@ -55,22 +55,24 @@ $banner = $main_datas[array_rand($main_datas)];
             </section>
         <?php endif; ?>
 
-        <section class="main-categories">
+        <section class="liste-quizz">
             <div class="container-fluid">
                 <div class="categories__list">
                     <?php foreach ($main_datas as $data) : ?>
                         <div>
-                            <a class="angled-img" href="<?= get_url() ?>/quizz.php?id=<?= $data['id_quizz'] ?>">
-                                <div class="img">
-                                    <img width="500" height="375" src="<?= $data['img_link'] ?>"></div>
-                                <div class="over-info">
-                                    <div>
+                            <div class="items">
+                                <a class="angled-img" href="<?= get_url() ?>/quizz.php?id=<?= $data['id_quizz'] ?>">
+                                    <div class="img">
+                                        <img width="500" height="375" src="<?= $data['img_link'] ?>"></div>
+                                    <div class="over-info">
                                         <div>
-                                            <h4><?= $data['quizz_name'] ?></h4>
+                                            <div>
+                                                <h4><?= $data['quizz_name'] ?></h4>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>

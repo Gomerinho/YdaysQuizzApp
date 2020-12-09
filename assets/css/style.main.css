@@ -290,24 +290,15 @@ main .main-categories .angled-img .img {
   display: block;
   overflow: hidden;
   border: 1px solid #000;
-  -webkit-transform: skew(-7deg);
-  -ms-transform: skew(-7deg);
-  transform: skew(-7deg);
-  -webkit-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  -webkit-backface-visibility: hidden;
 }
 main .main-categories .angled-img .img > img {
-  width: 100%;
-  opacity: 0.5;
+  margin: auto;
+  display: block;
+  width: auto;
+  opacity: 0.7;
   -webkit-transition: 0.3s opacity ease;
   -o-transition: 0.3s opacity ease;
   transition: 0.3s opacity ease;
-  -webkit-transform: skew(7deg) scale(1.098);
-  -ms-transform: skew(7deg) scale(1.098);
-  transform: skew(7deg) scale(1.098);
-  -webkit-backface-visibility: hidden;
   height: 250px;
   object-fit: cover;
   object-position: top;
@@ -409,6 +400,80 @@ main .fil-ariane .breadcrumb-item a {
 main .fil-ariane .breadcrumb-item.active {
   color: #B2BABB;
   font-weight: 600;
+}
+main .pagination-container {
+  background-color: unset;
+  text-transform: none;
+  font-weight: 600;
+}
+main .pagination-container .pagination {
+  width: fit-content;
+  margin: auto;
+}
+main .pagination-container .pagination .page-item .page-link {
+  padding: 10px 15px;
+}
+main .pagination-container .pagination .page-item.active .page-link {
+  background-color: #F5B041;
+  border-color: #F5B041;
+  color: #484848;
+}
+main .pagination-container .pagination .page-item.disabled {
+  font-weight: 300;
+}
+main .liste-quizz .categories__list .items .img img {
+  height: 150px;
+}
+main .liste-quizz .items {
+  border-radius: 5px;
+  cursor: pointer;
+  border: 3px dotted black;
+  transition: all 0.6s;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+main .liste-quizz .items .img,
+main .liste-quizz .items .over-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .liste-quizz .items .img {
+  align-self: end;
+}
+main .liste-quizz .items .img img {
+  font-size: 100px;
+  color: #F5B041;
+  transform: translateY(0px);
+  transition: all 0.6s;
+  max-width: 100%;
+  width: auto;
+  height: 250px;
+}
+main .liste-quizz .items .over-info {
+  align-self: start;
+  padding-top: 25px;
+}
+main .liste-quizz .items .over-info h4 {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #F5B041;
+  transform: translateY(0px);
+  transition: all 0.5s;
+}
+main .liste-quizz .items:hover {
+  border: 3px solid #F5B041;
+}
+main .liste-quizz .items:hover a {
+  text-decoration: none;
+}
+main .liste-quizz .items:hover .over-info h4 {
+  transform: translateY(-10px);
+}
+main .liste-quizz .items:hover .img img {
+  transform: translateY(5px);
 }
 
 footer {

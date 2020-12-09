@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tous les quizz</a>
+                        <a class="nav-link" href="<?= get_url() ?>/liste-quizz.php">Tous les quizz</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Créer mon quizz</a>

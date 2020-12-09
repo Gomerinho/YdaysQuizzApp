@@ -1,23 +1,44 @@
 <?php
 
-session_start();
-
-require_once('./functions/db.php');
-require_once('./functions/quizz.php');
-
-$id = 0;
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $currentPage = (int) strip_tags($_GET['page']);
 } else {
+    $currentPage = 1;
 }
 
-$data = get_quizz($pdo, $id);
-$_SESSION['quizz']['infos'] = $data['infos'];
-$_SESSION['quizz']['questions'] = $data['questions'];
-$_SESSION['quizz']['done'] = [];
-$_SESSION['quizz']['reussis'] = 0;
+require_once('./functions/db.php');
 
-$main_datas = get_quizz_list($pdo, 6);
+$sql = 'SELECT COUNT(*) AS nb_quizz FROM quizz';
+
+$query = $pdo->prepare($sql);
+
+// On exécute
+$query->execute();
+
+// On récupère le nombre d'articles
+$result = $query->fetch(PDO::FETCH_ASSOC);
+
+$nb_quizz = (int) $result['nb_quizz'];
+
+$parPage = 10;
+$pages = ceil($nb_quizz / $parPage);
+
+// Calcul du 1er article de la page
+$premier = ($currentPage * $parPage) - $parPage;
+
+$sql = 'SELECT * FROM quizz ORDER BY id_quizz DESC LIMIT :premier, :parpage;';
+
+// On prépare la requête
+$query = $pdo->prepare($sql);
+
+$query->bindValue(':premier', $premier, PDO::PARAM_INT);
+$query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
+
+// On exécute
+$query->execute();
+
+// On récupère les valeurs dans un tableau associatif
+$articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -44,8 +65,8 @@ $main_datas = get_quizz_list($pdo, 6);
         <section class="quizz-title">
             <div class="container-fluid container-p-50">
                 <p class="category">
-                    <i class="fa fa-question-circle"></i>
-                    <span><?= $data['infos']['quizz_name'] ?></span>
+                    <i class="fa fa-list"></i>
+                    <span>Tous les quizz</span>
                 </p>
             </div>
         </section>
@@ -54,68 +75,24 @@ $main_datas = get_quizz_list($pdo, 6);
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?= get_url() ?>">Accueil</a></li>
-                    <li class="breadcrumb-item"><a href="<?=get_url()?>/liste-quizz.php">Tous les quizz</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?= $data['infos']['quizz_name'] ?></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tous les quizz</li>
                 </ol>
             </nav>
         </div>
 
-        <section id="quizz" class="main-slider p-0">
-            <div class="container-fluid">
-                <div class="quizz-container row">
-                    <div class="col-12 col-md-6 col-lg-7 image" data-speed="0.4">
-                        <img src="<?= $data['infos']['img_link'] ?>" alt="">
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-5 info">
-                        <div>
-                            <div class="container">
-                                <h1><?= $data['infos']['quizz_name'] ?></h1>
-
-                                <p class="author">
-                                    Proposé par&nbsp;:&nbsp;
-                                    <span><?= $data['infos']['username'] ?></span>
-                                </p>
-                                <p>&nbsp;</p>
-                                <h2>Testez vos connaissances</h2>
-                                <p>
-                                    Les questions s'affichent dans un ordre aléatoire. Vous ferez de nouvelles découvertes à chaque fois!
-                                </p>
-                                <a class="btn btn-lg" id="lancer-quizz" target="_self">Lancer le Quizz</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-
-        <section class="main-categories">
-            <div class="container-fluid">
-                <div class="categories__title--manu">
-                    <div>
-                        <h2>Découvrir d'autres quizz</h2>
-                    </div>
-                    <div>
-                    </div>
-                </div>
-               
-            </div>
-        </section>
-
         <section class="liste-quizz">
             <div class="container-fluid">
-                <div class="categories__list">
-                    <?php foreach ($main_datas as $data) : ?>
-                        <div>
+                <div class="row mb-5">
+                    <?php foreach ($articles as $q) : ?>
+                        <div class="col-12 col-md-6 col-lg-4">
                             <div class="items">
-                                <a class="angled-img" href="<?= get_url() ?>/quizz.php?id=<?= $data['id_quizz'] ?>">
+                                <a class="angled-img" href="<?= get_url() ?>/quizz.php?id=<?= $q['id_quizz'] ?>">
                                     <div class="img">
-                                        <img width="500" height="375" src="<?= $data['img_link'] ?>"></div>
+                                        <img src="<?= $q['img_link'] ?>"></div>
                                     <div class="over-info">
                                         <div>
                                             <div>
-                                                <h4><?= $data['quizz_name'] ?></h4>
+                                                <h4><?= $q['quizz_name'] ?></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -124,6 +101,29 @@ $main_datas = get_quizz_list($pdo, 6);
                         </div>
                     <?php endforeach; ?>
                 </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container-fluid">
+                <nav class="pagination-container">
+                    <ul class="pagination">
+                        <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+                        <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
+                            <a href="<?= get_url() ?>/liste-quizz.php?page=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
+                        </li>
+                        <?php for ($page = 1; $page <= $pages; $page++) : ?>
+                            <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
+                            <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                                <a href="<?= get_url() ?>/liste-quizz.php?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                            </li>
+                        <?php endfor ?>
+                        <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+                        <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                            <a href="<?= get_url() ?>/liste-quizz.php?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </section>
     </main>

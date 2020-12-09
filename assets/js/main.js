@@ -2,7 +2,7 @@
 /** TABLE
  * 
  * - SLIDERS
- * 
+ * - QUIZZ
  */
 
 // QUIZZ
