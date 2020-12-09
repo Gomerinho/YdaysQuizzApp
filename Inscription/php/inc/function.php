@@ -17,8 +17,8 @@ function logged_only()
         session_start();
     }
     if (!isset($_SESSION['auth'])) {
-        $_SESSION['flash']['negative'] = "Vous devez vous connecter pour accéder a cette page";
-        header('Location: login.php');
+        $_SESSION['flash']['danger'] = "Vous devez vous connecter pour accéder a cette page";
+        header('Location: connexion.php');
         exit();
     }
 }
