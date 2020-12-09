@@ -19,6 +19,8 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
         exit();
     } else {
         $errors['username'] = 'Identifiant ou mot de passe incorrecte';
+        header('Location: connexion.php');
+        exit();
     }
 }
 
