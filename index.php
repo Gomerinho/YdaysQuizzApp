@@ -5,6 +5,10 @@ require_once('./functions/quizz.php');
 $main_datas = get_quizz_list($pdo, 6);
 $banner = $main_datas[array_rand($main_datas)];
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +49,7 @@ $banner = $main_datas[array_rand($main_datas)];
                                             <strong><?= $banner['username'] ?></strong>
                                         </p>
                                         <p>&nbsp;</p>
-                                        <a class="btn btn-lg " href="<?= get_url() ?>/quizz.php?id=<?= $banner['id_quizz'] ?>" target="_self">Lancer le Quizz</a>
+                                        <a class="btn btn-lg " href="<?= get_url() ?>/YdaysQuizzApp/quizz.php?id=<?= $banner['id_quizz'] ?>" target="_self">Lancer le Quizz</a>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +65,7 @@ $banner = $main_datas[array_rand($main_datas)];
                     <?php foreach ($main_datas as $data) : ?>
                         <div>
                             <div class="items">
-                                <a class="angled-img" href="<?= get_url() ?>/quizz.php?id=<?= $data['id_quizz'] ?>">
+                                <a class="angled-img" href="<?= get_url() ?>/YdaysQuizzApp/quizz.php?id=<?= $data['id_quizz'] ?>">
                                     <div class="img">
                                         <img width="500" height="375" src="<?= $data['img_link'] ?>"></div>
                                     <div class="over-info">

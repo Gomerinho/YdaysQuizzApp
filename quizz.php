@@ -11,6 +11,11 @@ if (isset($_GET['id'])) {
 } else {
 }
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 $data = get_quizz($pdo, $id);
 $_SESSION['quizz']['infos'] = $data['infos'];
 $_SESSION['quizz']['questions'] = $data['questions'];
@@ -53,8 +58,8 @@ $main_datas = get_quizz_list($pdo, 6);
         <div class="container-fluid fil-ariane">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?= get_url() ?>">Accueil</a></li>
-                    <li class="breadcrumb-item"><a href="<?=get_url()?>/liste-quizz.php">Tous les quizz</a></li>
+                    <li class="breadcrumb-item"><a href="<?= get_url() ?>/YdaysQuizzApp">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="<?= get_url() ?>/YdaysQuizzApp/liste-quizz.php">Tous les quizz</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><?= $data['infos']['quizz_name'] ?></li>
                 </ol>
             </nav>
@@ -99,7 +104,7 @@ $main_datas = get_quizz_list($pdo, 6);
                     <div>
                     </div>
                 </div>
-               
+
             </div>
         </section>
 
@@ -109,7 +114,7 @@ $main_datas = get_quizz_list($pdo, 6);
                     <?php foreach ($main_datas as $data) : ?>
                         <div>
                             <div class="items">
-                                <a class="angled-img" href="<?= get_url() ?>/quizz.php?id=<?= $data['id_quizz'] ?>">
+                                <a class="angled-img" href="<?= get_url() ?>/YdaysQuizzApp/quizz.php?id=<?= $data['id_quizz'] ?>">
                                     <div class="img">
                                         <img width="500" height="375" src="<?= $data['img_link'] ?>"></div>
                                     <div class="over-info">

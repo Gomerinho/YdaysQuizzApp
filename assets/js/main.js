@@ -22,9 +22,7 @@ function do_ajax(step) {
         success: function (code_html, statut) {
             $("#quizz").html(code_html);
             $("#next-quizz").prop('disabled', true);
-            $(".reponse *").click(function (e) {
-                e.stopPropagation();
-            });
+
 
             $('#reponses').on('click', '.response-choix', function (event) {
                 event.preventDefault();
@@ -80,6 +78,10 @@ function do_ajax(step) {
                     }
                 });
 
+            });
+
+            $(".response-choix *").on("click", function (e) {
+                $(this).parent().click();
             });
         },
         error: function (resultat, statut, erreur) {

@@ -1,5 +1,10 @@
 <?php
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 if (isset($_GET['page']) && !empty($_GET['page'])) {
     $currentPage = (int) strip_tags($_GET['page']);
 } else {
@@ -59,7 +64,7 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 
-    <?php include('./includes/header.php') ?>
+    <?php include('includes/header.php') ?>
 
     <main>
         <section class="quizz-title">
@@ -74,7 +79,7 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);
         <div class="container-fluid fil-ariane">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?= get_url() ?>">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="<?= get_url() ?>/YdaysQuizzApp">Accueil</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Tous les quizz</li>
                 </ol>
             </nav>
@@ -86,7 +91,7 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);
                     <?php foreach ($articles as $q) : ?>
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="items">
-                                <a class="angled-img" href="<?= get_url() ?>/quizz.php?id=<?= $q['id_quizz'] ?>">
+                                <a class="angled-img" href="<?= get_url() ?>/YdaysQuizzApp/quizz.php?id=<?= $q['id_quizz'] ?>">
                                     <div class="img">
                                         <img src="<?= $q['img_link'] ?>"></div>
                                     <div class="over-info">
@@ -110,17 +115,17 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);
                     <ul class="pagination">
                         <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
                         <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
-                            <a href="<?= get_url() ?>/liste-quizz.php?page=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
+                            <a href="<?= get_url() ?>/YdaysQuizzApp/liste-quizz.php?page=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
                         </li>
                         <?php for ($page = 1; $page <= $pages; $page++) : ?>
                             <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
                             <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
-                                <a href="<?= get_url() ?>/liste-quizz.php?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                                <a href="<?= get_url() ?>/YdaysQuizzApp/liste-quizz.php?page=<?= $page ?>" class="page-link"><?= $page ?></a>
                             </li>
                         <?php endfor ?>
                         <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
                         <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
-                            <a href="<?= get_url() ?>/liste-quizz.php?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
+                            <a href="<?= get_url() ?>/YdaysQuizzApp/liste-quizz.php?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
                         </li>
                     </ul>
                 </nav>

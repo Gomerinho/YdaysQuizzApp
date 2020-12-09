@@ -15,7 +15,7 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
         session_start();
         $_SESSION['auth'] = $user;
         $_SESSION['flash']['success'] = 'Vous êtes maintenant connecté';
-        header('Location: ../../index.html');
+        header('Location: ../../index.php');
         exit();
     } else {
         $errors['username'] = 'Identifiant ou mot de passe incorrecte';

@@ -25,7 +25,7 @@ if (isset($_POST['modifier'])) {
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="crud.css">
+    <link rel="stylesheet" href="../../../assets/css/style.main.css">
 
 <body>
     <?php include 'inc/header.php' ?>
@@ -81,7 +81,8 @@ if (isset($_POST['modifier'])) {
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="QuizzQ1Rb">Reponse bonne</label>
-                                                    <select class="form-control" id="QuizzQ1Rb" name="quizz_q1rb" value="<?php echo $quizz->quizz_q1rb; ?>">
+                                                    <select class="form-control" id="QuizzQ1Rb" name="quizz_q1rb">
+                                                        <option selected="selected"><?php echo $quizz->quizz_q1rb; ?></option>
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -127,6 +128,7 @@ if (isset($_POST['modifier'])) {
                                                 <div class="form-group">
                                                     <label for="QuizzQ2Rb">Reponse bonne</label>
                                                     <select class="form-control" id="QuizzQ2Rb" name="quizz_q2rb" value="<?php echo $quizz->quizz_q2rb; ?>">
+                                                        <option selected="selected"><?php echo $quizz->quizz_q2rb; ?></option>
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -172,6 +174,7 @@ if (isset($_POST['modifier'])) {
                                                 <div class="form-group">
                                                     <label for="QuizzQ3Rb">Reponse bonne</label>
                                                     <select class="form-control" id="QuizzQ3Rb" name="quizz_q3rb" value="<?php echo $quizz->quizz_q3rb; ?>">
+                                                        <option selected="selected"><?php echo $quizz->quizz_q3rb; ?></option>
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -217,6 +220,7 @@ if (isset($_POST['modifier'])) {
                                                 <div class="form-group">
                                                     <label for="QuizzQ4Rb">Reponse bonne</label>
                                                     <select class="form-control" id="QuizzQ4Rb" name="quizz_q4rb" value="<?php echo $quizz->quizz_q4rb; ?>">
+                                                        <option selected="selected"><?php echo $quizz->quizz_q4rb; ?></option>
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -261,7 +265,8 @@ if (isset($_POST['modifier'])) {
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="QuizzQ5Rb">Reponse bonne</label>
-                                                    <select class="form-control" id="QuizzQ5Rb" name="quizz_q5rb" value="<?php echo $quizz->quizz_q5rb; ?>">
+                                                    <select class="form-control" id="QuizzQ5Rb" name="quizz_q5rb">
+                                                        <option selected="selected"><?php echo $quizz->quizz_q5rb; ?></option>
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>

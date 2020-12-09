@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    background-image: url("../../assets/img/bg3.png");
+    background-size: cover
+}
+
+nav{
+    text-transform: uppercase;
+}
+
+.title{
+    color: black;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.logo{
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: max-content;
+    height: 120px;
+    width: 120px;
+}
+
+#profil{
+    margin-top: 10px;
+    max-width: 400px;
+    background: #ffb75e; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffb75e, #ed8f03); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffb75e, #ed8f03); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: solid 2px black;
+    border-radius: 12px; 
+}
+
+.name{
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.choix{
+    margin: 10px;
+}
+
+li{
+    margin-left: 20px;
+    list-style: none;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+
+hr.solid {
+    border-top: 1px solid  #F2D6AE ;
+    
+  }
+
+ul{
+    margin-top: 30px;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+a:hover{
+    text-decoration: none;
+    color:  white;
+}
+
