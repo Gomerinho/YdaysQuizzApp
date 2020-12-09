@@ -137,7 +137,8 @@ main {
                 position: relative;
                 display: block;
                 overflow: hidden;
-                background: #0c0c0c; //#160962;
+                // background: #0c0c0c; //#160962;
+                border: 1px solid #000;
                 -webkit-transform: skew(-7deg);
                 -ms-transform: skew(-7deg);
                 transform: skew(-7deg);

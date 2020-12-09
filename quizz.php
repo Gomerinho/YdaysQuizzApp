@@ -1,5 +1,26 @@
+<?php
+
+session_start();
+
+require_once('./functions/db.php');
+require_once('./functions/quizz.php');
+
+$id = 0;
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+}
+
+$data = get_quizz($pdo, $id);
+$_SESSION['quizz']['infos'] = $data['infos'];
+$_SESSION['quizz']['questions'] = $data['questions'];
+$_SESSION['quizz']['done'] = [];
+$_SESSION['quizz']['reussis'] = 0;
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -22,7 +43,7 @@
             <div class="container-fluid container-p-50">
                 <p class="category">
                     <i class="fa fa-question-circle"></i>
-                    <span>Géographie</span>
+                    <span><?= $data['infos']['quizz_name'] ?></span>
                 </p>
             </div>
         </section>
@@ -30,8 +51,9 @@
         <div class="container-fluid fil-ariane">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Accueil</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Géographie</li>
+                    <li class="breadcrumb-item"><a href="<?= get_url() ?>">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="/">Tous les quizz</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= $data['infos']['quizz_name'] ?></li>
                 </ol>
             </nav>
         </div>
@@ -40,23 +62,23 @@
             <div class="container-fluid">
                 <div class="quizz-container row">
                     <div class="col-12 col-md-6 col-lg-7 image" data-speed="0.4">
-                        <img src="https://i2.wp.com/www.hisour.com/wp-content/uploads/2018/05/Architecture-of-Seattle.jpg?fit=960%2C640&ssl=1" alt="">
+                        <img src="<?= $data['infos']['img_link'] ?>" alt="">
                     </div>
                     <div class="col-12 col-md-6 col-lg-5 info">
                         <div>
                             <div class="container">
-                                <h1>Les grandes métropoles</h1>
+                                <h1><?= $data['infos']['quizz_name'] ?></h1>
 
                                 <p class="author">
                                     Proposé par&nbsp;:&nbsp;
-                                    <span>Utilisateur</span>
+                                    <span><?= $data['infos']['username'] ?></span>
                                 </p>
                                 <p>&nbsp;</p>
                                 <h2>Testez vos connaissances</h2>
                                 <p>
                                     Les questions s'affichent dans un ordre aléatoire. Vous ferez de nouvelles découvertes à chaque fois!
                                 </p>
-                                <a class="btn btn-lg" href="/quizz-go.php" target="_self">Lancer le Quizz</a>
+                                <a class="btn btn-lg" id="lancer-quizz" target="_self">Lancer le Quizz</a>
                             </div>
                         </div>
                     </div>
@@ -148,7 +170,7 @@
 
     <?php include('./includes/footer.php') ?>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>

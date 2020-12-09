@@ -1,5 +1,24 @@
+<?php
+
+session_start();
+
+require_once('./functions/db.php');
+require_once('./functions/quizz.php');
+
+$id = 0;
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+}
+
+$data = get_quizz($pdo, $id);
+$_SESSION['quizz'] = $data;
+// var_dump($_SESSION['quizz']);
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -22,7 +41,7 @@
             <div class="container-fluid container-p-50">
                 <p class="category">
                     <i class="fa fa-question-circle"></i>
-                    <span>Géographie</span>
+                    <span><?= $data['quizz_name'] ?></span>
                 </p>
             </div>
         </section>
@@ -30,9 +49,9 @@
         <div class="container-fluid fil-ariane">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Accueil</a></li>
-                    <li class="breadcrumb-item"><a href="/">Géographie</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Les grandes métropoles</li>
+                    <li class="breadcrumb-item"><a href="<?= get_url() ?>">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="/">Tous les quizz</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?= $data['quizz_name'] ?></li>
                 </ol>
             </nav>
         </div>
@@ -74,79 +93,6 @@
             </div>
         </section>
 
-        <!-- 
-
-        <section class="main-categories">
-            <div class="container-fluid">
-                <div class="categories__list">
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Barbara_McClintock_%281902-1992%29_shown_in_her_laboratory_in_1947.jpg/512px-Barbara_McClintock_%281902-1992%29_shown_in_her_laboratory_in_1947.jpg"></div>
-                            <div class="over-info">
-                                <div>
-                                    <div>
-                                        <h4>Science</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://dsbihome.files.wordpress.com/2019/03/n-video-games-628x314.jpg"></div>
-                            <div class="over-info">
-                                <div>
-                                    <div>
-                                        <h4>Jeux vidéos</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://www.ot-saumur.fr/photo/gal/pic/gal-10720280.jpg?v=1554899595"></div>
-                            <div class="over-info">
-                                <div>
-                                    <div>
-                                        <h4>Histoire</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://assets.sport.francetvinfo.fr/sites/default/files/styles/large_16_9/public/2019-09/075_ciancaglini-formulao190906_nptom.jpg?itok=awWWaF7e"></div>
-                            <div class="over-info">
-                                <div>
-                                    <div>
-                                        <h4>Formule 1</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a class="angled-img" href="#">
-                            <div class="img">
-                                <img width="500" height="375" src="https://www.corsenetinfos.corsica/photo/art/grande/30061714-28843993.jpg?v=1548340088"></div>
-                            <div class="over-info">
-                                <div>
-                                    <div>
-                                        <h4>Musique</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section> -->
     </main>
 
     <?php include('./includes/footer.php') ?>

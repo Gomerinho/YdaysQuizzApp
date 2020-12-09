@@ -55,6 +55,7 @@
     img {
         height: auto;
         width: 100%;
+        max-height: 400px;
     }
 
     p {
@@ -120,6 +121,16 @@
                 font-size: inherit;
                 display: inline;
                 padding-left: 10px;
+            }
+
+            &.bonne-reponse {
+                background-color: blue; //#096A09;
+                color: $blanc;
+            }
+
+            &.mauvaise-reponse {
+                background-color: #BB0B0B;
+                color: $blanc;
             }
         }
     }
