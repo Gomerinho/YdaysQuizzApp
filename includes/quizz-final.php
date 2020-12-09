@@ -7,8 +7,8 @@ require_once('../functions/utilitaires.php');
 $score = 0;
 
 $id = 0;
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if (isset($_SESSION['quizz'])) {
+    $id = $_SESSION['quizz']['infos']['id_quizz'];
 } else {
 }
 
