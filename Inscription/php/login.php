@@ -26,7 +26,7 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
 
 <?php if (isset($_SESSION['flash'])) : ?>
     <?php foreach ($_SESSION['flash'] as $type => $message) : ?>
-        <div class="ui <?= $type ?> message center">
+        <div class="alert alert-<?= $type ?>">
             <?= $message; ?>
         </div>
     <?php endforeach; ?>

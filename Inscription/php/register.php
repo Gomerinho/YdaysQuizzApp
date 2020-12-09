@@ -39,11 +39,11 @@ if (!empty($_POST)) {
     }
 
     if (empty($errors)) {
-        $req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email = ?, confirmation_token = ?");
+        $req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email = ?");
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $token = str_random(60);
-        $req->execute([$_POST['username'], $password, $_POST['email'], $token]);
-        $user_id = $pdo->lastInsertId();
+        $req->execute([$_POST['username'], $password, $_POST['email']]);
+        /*$user_id = $pdo->lastInsertId();
         $From  = "From:QuizzApp@service.com\n";
         $From .= "MIME-version: 1.0\n";
         $From .= "Content-type: text/html; charset= iso-8859-1\n";
@@ -57,7 +57,7 @@ if (!empty($_POST)) {
         <p>L"&eacute;quipe QuizzApp.</p>
         <p></p>
         <p><img src="https://nsa40.casimages.com/img/2020/06/07/200607052858346002.png" alt="" /></p>', $From);
-        $_SESSION['flash']['positive'] = "Un email vous a était envoyé pour enregistré votre compte";
+        $_SESSION['flash']['positive'] = "Un email vous a était envoyé pour enregistré votre compte";*/
         header('Location:connexion.php');
         exit();
     }

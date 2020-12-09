@@ -21,7 +21,7 @@ logged_only();
 <body>
     <?php if (isset($_SESSION['flash'])) : ?>
         <?php foreach ($_SESSION['flash'] as $type => $message) : ?>
-            <div class="ui <?= $type ?> message center" style="width: 50%">
+            <div class="alert alert-<?= $type ?>" style="width: 50%">
                 <?= $message; ?>
             </div>
         <?php endforeach; ?>
@@ -168,7 +168,7 @@ logged_only();
             <hr>
             <div class="form-group px-4 py-3">
                 <label for="QuizzQ5">Question 5</label>
-                <input type="text" class="form-control" id="QuizzQ5" placeholder="Question 1" name="quizz_q5">
+                <input type="text" class="form-control" id="QuizzQ5" placeholder="Question 1" name="quizz_q5" required>
                 <div class="container">
 
                     <div class="form-group">
@@ -205,6 +205,13 @@ logged_only();
 
             <button type="submit" class="btn btn-primary" name="envoyer">Envoyez</button>
         </form>
+
+        <div>
+            Afficher mon quizz
+            <?php while ($quizz = $result_quizz->fetch(PDO::FETCH_OBJ)) {
+                echo "Question 1 : " . $quizz->quizz_q1;
+            } ?>
+        </div>
     </div>
 
     <script>

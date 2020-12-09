@@ -7,3 +7,5 @@ require 'db.php';
 //$result_adverts = $pdo->query("SELECT * FROM adverts INNER JOIN users ON adverts.id_users=users.id ORDER BY date_ad DESC");
 
 //$result_reservations = $pdo->query("SELECT * FROM reservation INNER JOIN users ON reservation.id_users=users.id INNER JOIN adverts ON reservation.id_advert=adverts.id_ad ORDER BY date_ad DESC");
+
+$result_quizz = $pdo->query('SELECT * FROM quizz INNER JOIN users WHERE quizz.id_user = users.id');
