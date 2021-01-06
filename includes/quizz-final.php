@@ -26,6 +26,6 @@ if (isset($_GET['step']) && $_GET['step'] == '2') {
 </div>
 
 <div class="buttons">
-    <a href="<?= get_url() ?>/quizz.php?id=<?= $id ?>" class="btn">Recommencer</a>
-    <a href="<?= get_url() ?>" class="btn">Accueil</a>
+    <a href=<?= "quizz.php?id=" . $id ?> class="btn">Recommencer</a>
+    <a href="index.php" class="btn">Accueil</a>
 </div>
