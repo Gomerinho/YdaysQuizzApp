@@ -58,7 +58,7 @@ $main_datas = get_quizz_list($pdo, 6);
         <div class="container-fluid fil-ariane">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?= get_url() ?>/YdaysQuizzApp">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="<?= get_url() ?>/YdaysQuizzApp/">Accueil</a></li>
                     <li class="breadcrumb-item"><a href="<?= get_url() ?>/YdaysQuizzApp/liste-quizz.php">Tous les quizz</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><?= $data['infos']['quizz_name'] ?></li>
                 </ol>

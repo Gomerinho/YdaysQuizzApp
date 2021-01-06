@@ -3,7 +3,7 @@
 <header>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid container-p-50">
-            <a class="navbar-brand" href="<?= get_url() ?>">
+            <a class="navbar-brand" href="index.php">
                 <img class="logo" src="https://image.flaticon.com/icons/png/512/36/36601.png">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
